@@ -163,7 +163,7 @@ hoverHandler settings =
             Nothing -> do
                 expr <- loadFile settings uri_
                 (welltyped, _) <- case typecheck settings expr of
-                    Left  _  -> throwE (Info, "Can't infer type; code does not type-check.")
+                    Left  err  -> throwE (Info, "Can't infer type; code does not type-check: " <> Text.pack (show err))
                     Right wt -> return wt
                 case typeAt (_line, _character) welltyped of
                     Left err -> throwE (Error, Text.pack err)

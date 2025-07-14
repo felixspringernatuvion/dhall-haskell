@@ -128,6 +128,7 @@ data DhallError = ErrorInternal SomeException
                 | ErrorImportSourced (Dhall.SourcedException Import.MissingImports)
                 | ErrorTypecheck (Dhall.TypeError Src Void)
                 | ErrorParse Dhall.ParseError
+  deriving Show
 
 -- | Parse a Dhall expression.
 parse :: Text -> Either DhallError (Expr Src Dhall.Import)
